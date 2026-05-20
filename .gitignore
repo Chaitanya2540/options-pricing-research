@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+pytest-cache-files-*
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local notes / personal scaffolding (never commit)
+NEXT_STEPS.md
+TODO.md
+SCRATCH.md
+*_personal.md
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Notebook autosaves
+*.ipynb_checkpoints
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Build / deploy
+build/
+dist/
+
+# Raw data caches we don't want to commit (keep results/ checked in for README)
+data/raw/*.csv
+data/raw/*.parquet
+data/raw/*.json
+!data/raw/.gitkeep
+
+# results/ is checked in: charts and JSON exports are referenced from the
+# README and docs, and a fresh clone needs them visible without re-running
+# the pipeline.

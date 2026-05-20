@@ -1,0 +1,19 @@
+[project]
+name = "options-pricing-research"
+version = "0.1.0"
+description = "Options pricing (Black-Scholes, binomial, Monte Carlo) and delta-hedging research framework on SPY/SPX."
+authors = [{name = "Chaitanya"}]
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra -q"
