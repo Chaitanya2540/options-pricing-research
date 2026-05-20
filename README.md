@@ -7,23 +7,19 @@ market quotes. Includes an implied-volatility surface fitter and a discrete
 delta-hedging simulator that decomposes short-straddle P&L into theta, gamma
 and residual hedging error.
 
-> **Status:** in development — see the task list and module roadmap below.
-
 ---
 
-## Why this project
-
-Project goals:
+## Design principles
 
 1. **Right tool for the right job.** Each pricing method is applied to the
    option type where it earns its place — Black-Scholes for European vanillas
-   (closed form), binomial tree for American puts (early exercise),
-   Monte Carlo for an Asian (path-dependent payoff). The interview answer is
-   not "they all converge" — it is "I picked the right method for the right
-   contract."
+   (closed form), binomial tree for American options (early-exercise handled
+   via backward induction), Monte Carlo for an Asian (path-dependent payoff
+   where trees do not recombine).
 2. **Honest validation.** Convergence rates (binomial steps, MC paths) are
    measured and plotted. Greeks are computed three ways (analytical,
-   finite-difference, pathwise) and cross-checked.
+   tree-based, MC pathwise / common-random-number bump) and cross-checked
+   against each other within statistical tolerance.
 3. **From price to P&L.** A delta-hedging simulator runs a short ATM straddle
    with daily rebalancing across many trade dates, decomposing realised P&L
    into theta collected, gamma paid, and residual hedging error. The
@@ -126,20 +122,6 @@ Selling rich vol that comes in low → 100% of paths profitable. Selling cheap
 vol that comes in high → 0% of paths profitable. The textbook short-gamma
 result, confirmed end-to-end. Full discussion in
 [docs/hedging_attribution.md](docs/hedging_attribution.md).
-
----
-
-## Resume bullet (copy-paste ready)
-
-> Built a Python options-pricing framework with three engines (Black-Scholes,
-> CRR binomial, antithetic Monte Carlo with control variates). Validated each
-> against BS truth (binomial error O(1/N), MC standard error O(1/√N)) and
-> cross-checked Greeks across all three. Fitted SPY's implied-volatility
-> surface from live yfinance chains via Brent inversion. Built a daily-
-> rebalanced short-straddle gamma-scalp simulator that empirically reproduces
-> the textbook result: at σ_implied=30% / σ_realised=15%, 100% of paths
-> profit; at σ_implied=15% / σ_realised=30%, 0% do. 54-test pytest suite,
-> Streamlit dashboard, MIT licensed.
 
 ---
 
