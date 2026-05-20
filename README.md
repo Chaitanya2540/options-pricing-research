@@ -7,6 +7,12 @@ market quotes. Includes an implied-volatility surface fitter and a discrete
 delta-hedging simulator that decomposes short-straddle P&L into theta, gamma
 and residual hedging error.
 
+**🚀 Live demo:** <https://options-pricing-chaitanya.streamlit.app/>
+
+The Streamlit dashboard exposes five interactive tabs — pricing calculator with
+three-method convergence chart, live SPY implied-vol surface, short-straddle
+gamma-scalp simulator, payoff diagrams, and a P&L heatmap across spot × σ.
+
 ---
 
 ## Design principles
