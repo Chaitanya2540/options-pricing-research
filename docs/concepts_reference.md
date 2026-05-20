@@ -1,8 +1,8 @@
 # Concepts reference
 
-Deep-dive reference for every concept this project implicates, plus adjacent
-material interviewers commonly probe. Read alongside the mastery guide; this
-is the searchable encyclopaedia, that is the linear story.
+A topic-organised reference for the mathematical and numerical concepts
+this framework implements, plus adjacent material useful for reasoning
+about pricing and hedging derivatives more broadly.
 
 Conventions:
 - Formulas use `S` for spot, `K` strike, `T` time to expiry (years), `r`
@@ -49,10 +49,10 @@ The third term is the surprise — ordinary calculus drops it. Because
 
 > `df = [∂f/∂t + μ ∂f/∂X + ½ σ² ∂²f/∂X²] dt + σ ∂f/∂X dW`
 
-Why it's in our project: Itô underpins both the Black-Scholes PDE
-derivation (§3.2) and the per-step P&L decomposition for delta-hedged
-positions (§9.1). If an interviewer asks you to derive *anything* in
-options pricing, Itô is your starting hammer.
+Why it appears in this framework: Itô underpins both the Black-Scholes
+PDE derivation (§3.2) and the per-step P&L decomposition for
+delta-hedged positions (§9.1). It is the foundational tool for
+deriving most results in continuous-time option pricing.
 
 ### 1.4 Quadratic variation
 
@@ -359,8 +359,8 @@ variate's known mean.
 - **Ultima**: `∂³V/∂σ³` — third-order vol sensitivity.
 - **Zomma**: `∂Γ/∂σ` — gamma's vol sensitivity.
 
-You won't be asked to compute these by hand in interviews, but you should
-recognise the names. They matter when you're hedging a complex book.
+These rarely appear in vanilla pricing, but they matter on
+complex books where curvature in any direction must be hedged.
 
 ### 7.4 Practical interpretation
 
@@ -625,28 +625,7 @@ pricing.
 
 ---
 
-## 15. Singapore-relevant context
-
-- **Index options**: STI (Straits Times Index) options on SGX; relatively
-  thin compared to SPX.
-- **Cross-listed activity**: SGX historically traded NIFTY futures
-  (since relisted), Nikkei 225 futures, MSCI Asia. Asian-hours liquidity
-  for global products is the SGX selling point.
-- **Major MM firms in SG**: Optiver, IMC, Tower Research, Jump Trading,
-  Jane Street (Hong Kong office services SG). All are options
-  market-makers and all interview for entry-level QT and QD seats.
-- **Buy-side**: Squarepoint, Two Sigma, Citadel, Millennium, Dymon, Tudor.
-  More QR / systematic-strategy roles.
-- **Banks**: DBS, OCBC, UOB (rates / risk), GS / MS / JPM (Asia derivatives).
-
-For your interviews specifically: the MM seats will probe options
-pricing + Greeks + hedging math hard. The systematic seats will probe
-factor-style alpha and statistical methods. This project leans MM — the
-gamma-scalp story is exactly the right signal there.
-
----
-
-## 16. Where every concept above lives in our code
+## 15. Where every concept above lives in the codebase
 
 | Concept | Module | Test |
 |---|---|---|
@@ -669,5 +648,5 @@ gamma-scalp story is exactly the right signal there.
 | Real chain ingestion + cleaning | `data.py:fetch_spy_chain`, `clean_chain` | `test_data.py` |
 | Realised vol estimator | `data.py:realised_volatility` | `test_data.py` |
 
-If you understand each row of this table, you can defend every line in the
-codebase to an interviewer.
+Each row maps a concept to its implementation and its regression test —
+useful for tracing any single piece of the framework end-to-end.

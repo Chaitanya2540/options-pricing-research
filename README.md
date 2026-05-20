@@ -60,7 +60,7 @@ options-pricing-research/
 ├── tests/                      # pytest regression suite
 ├── app/streamlit_app.py        # interactive dashboard
 ├── notebooks/                  # exploratory analysis
-├── docs/                       # methodology + interview Q&A + mastery guide
+├── docs/                       # convergence study, hedging attribution, concepts reference
 ├── results/                    # checked-in figures and JSON for the README
 ├── data/raw/                   # cached chain snapshots (gitignored)
 ├── scripts/                    # one-shot data fetches and analyses
@@ -98,6 +98,10 @@ Reference setup: European call, S=K=100, T=1y, r=5%, σ=20%. BS truth = **$10.45
 Binomial error halves as N doubles (O(1/N), confirmed). MC standard error
 quarters as paths quadruple (O(1/√N), confirmed).
 
+![Binomial → BS convergence](results/convergence_binomial.png)
+
+![Monte Carlo → BS convergence](results/convergence_mc.png)
+
 **Greeks cross-validation (European call, ATM, T=1y, σ=20%):**
 
 | Greek | Black-Scholes | Binomial | Monte Carlo (pathwise) |
@@ -122,6 +126,8 @@ Selling rich vol that comes in low → 100% of paths profitable. Selling cheap
 vol that comes in high → 0% of paths profitable. The textbook short-gamma
 result, confirmed end-to-end. Full discussion in
 [docs/hedging_attribution.md](docs/hedging_attribution.md).
+
+![Short straddle P&L distribution across three vol regimes](results/hedge_sim_distribution.png)
 
 ---
 

@@ -54,17 +54,18 @@ not continuously, and (b) gamma decays slightly as the option moves OTM/ITM
 during the path. Both numbers tell the same story: short gamma + falling
 realised vol = positive expected P&L.
 
-## What this proves on a resume
+## What this framework demonstrates
 
-1. Understanding of **why** market-makers sell options when implied vol looks
-   rich relative to realised — and why they hedge.
+1. The mechanical reason a market-maker who sells options at one implied
+   volatility and delta-hedges them earns positive expected P&L when
+   realised volatility prints below the level sold at.
 2. The empirical link between `σ_imp − σ_real` and short-gamma P&L, with
-   supporting attribution.
-3. A simulator that lets you stress-test the regime — how does the P&L
-   distribution shrink/widen with rebalancing frequency, with vol-of-vol,
-   with gap risk?
+   theta-versus-gamma attribution decomposed step-by-step.
+3. A simulator that lets the regime be stress-tested — how the P&L
+   distribution shrinks or widens with rebalancing frequency, with
+   vol-of-vol, with gap risk.
 
-## What we would extend in v2
+## Possible extensions
 
 - Stop-loss / trailing P&L to model real-world straddle management.
 - Stochastic volatility (Heston) underlying — does the gamma-scalp story

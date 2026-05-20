@@ -1,8 +1,9 @@
-# Interview Q&A — full coverage
+# Study questions and concise answers
 
-The morning-of cheat sheet. Answers are written in your voice — short,
-confident, defensible. Drill the categories you're weakest in. The deeper
-exposition for any concept here lives in `concepts_reference.md`.
+A categorised Q&A reference covering every concept this framework
+implicates, plus adjacent material commonly probed in derivatives
+interviews. Answers are short and dense; deeper exposition for any
+concept lives in `concepts_reference.md`.
 
 Categories:
 - A. Stochastic calculus and probability measures
@@ -14,7 +15,6 @@ Categories:
 - G. Option types — vanilla and exotic
 - H. Risk management and microstructure
 - I. Project-specific
-- J. Behavioural / firm fit
 
 ---
 
@@ -458,12 +458,11 @@ short-straddle gamma-scalp simulator that empirically reproduces the
 textbook short-gamma result. 54-test pytest suite, Streamlit dashboard,
 deployed end-to-end.
 
-**Q: Why SPY rather than NIFTY?**
-A: My first project (pairs trading) was on Indian equities. For project
-2 I wanted breadth — different asset class and market. SPY also has
-the cleanest IV smile globally and the deepest free historical chain
-data, so the convergence and smile-fitting stories are sharper. The
-methodology generalises to NIFTY trivially.
+**Q: Why SPY rather than another underlying?**
+A: SPY has the cleanest IV smile of any liquid equity-index option and
+the deepest free historical chain data, so the convergence and
+smile-fitting stories are sharper. The methodology generalises to other
+indices (NIFTY, Nikkei, HSI) without modification.
 
 **Q: Why a short straddle for the hedging sim?**
 A: A short straddle is the canonical gamma-scalp setup: ATM call + ATM
@@ -513,59 +512,13 @@ P&L direction matches the textbook formula.
 
 ---
 
-## J. Behavioural / firm fit
+## How to study from these notes
 
-**Q: Why quant?**
-A: I want to do work where every claim is testable. My first project
-caught a look-ahead bias bug that made my Sharpe go from 2.1 to 1.0 —
-the lower number is the truth, and shipping the truthful framework
-felt better than shipping the inflated one. Quant rewards that
-disposition: rigour, honest framing, and willingness to discard a
-result that doesn't survive scrutiny.
-
-**Q: Why options market-making specifically?**
-A: It's the cleanest application of the math. Every day you sell vol
-or buy vol, hedge, and the P&L is mechanically attributable to
-gamma-scalping or vega exposure. The feedback loop is short and the
-question of "was your model right?" gets answered every day. That's
-what I want to do.
-
-**Q: Why Singapore?**
-A: Singapore is where Asian-hours options market-making lives —
-Optiver, IMC, Tower, Jump, Jane Street's Asia desk all have meaningful
-SG presence and they all hire entry-level. The English-language /
-common-law environment plus Asia-time-zone trading is a unique
-combination. I'm a recent grad, options-MM is the role I want, and SG
-is the right city.
-
-**Q: What do you do when you don't know an answer?**
-A: Say so explicitly, then think out loud. In a brain-teaser interview
-the path matters more than the answer. In a project deep-dive: "I
-haven't validated that, but here's what I'd check first" is much
-stronger than guessing.
-
-**Q: Tell me about a time you found a bug in your own analysis.**
-A: In the pairs-trading project I had Sharpe 2.1 on HDFC/ICICI. The
-notebook computed signal at time `t` and executed at the same `t`'s
-price — classic look-ahead. Fixed by adding `execution_lag = 1`
-(execute at `t+1` close). Sharpe dropped to 1.0 on the stable regime.
-I shipped the lower number, made the fix the centrepiece of the
-methodology section, and used it as the lead-in to my interview Q&A —
-"the look-ahead correction is the single most important thing in this
-repo." Recruiters tell me the corrected Sharpe is more impressive
-than the inflated one would have been, because the diligence is
-visible.
-
----
-
-## How to study from here
-
-1. Read `concepts_reference.md` cover-to-cover once.
-2. For each Q&A here, attempt the answer without looking back at the
-   source code. If you stumble, the answer is somewhere in the
-   reference doc.
-3. Drill the categories you're weakest in — usually stochastic calculus
-   foundations (A) and vol models (E) for first-time interviewers.
-4. The morning of the interview, re-read I (project-specific) so the
-   project narrative is fresh. Recruiters reward candidates who can
-   articulate their own work concisely.
+1. Read `concepts_reference.md` cover-to-cover for the deeper exposition
+   behind each answer here.
+2. For each question above, attempt the answer without looking back at
+   the source. Categories A (stochastic calculus) and E (vol models) are
+   the ones most worth drilling for first-time derivatives interviews.
+3. Project-specific answers (section I) are the layer where personal
+   narrative meets the codebase — write your own version of those for
+   the project you are presenting.

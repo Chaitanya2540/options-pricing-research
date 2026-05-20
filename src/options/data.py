@@ -2,9 +2,9 @@
 
 We use yfinance as the primary source because it's free, reasonably reliable,
 and ships with a dead-simple API. Production-grade option-pricing work uses
-OPRA-feed vendors (CBOE DataShop, Polygon, IB), but for a portfolio project
-yfinance is the right scope: zero-cost, reproducible, and the data quality
-is good enough that the IV smile is recognisable.
+OPRA-feed vendors (CBOE DataShop, Polygon, IB), but for research and
+prototyping yfinance is the right scope: zero-cost, reproducible, and the
+data quality is good enough that the IV smile is recognisable.
 
 Module split:
 - `fetch_*` functions touch the network. Cached to disk under data/raw/.

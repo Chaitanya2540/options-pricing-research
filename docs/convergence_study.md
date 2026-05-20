@@ -49,19 +49,17 @@ quadruples (1k→5k drops SE from 0.31 to 0.15; 5k→25k from 0.15 to 0.067).
 
 ![mc convergence](../results/convergence_mc.png)
 
-## Why this matters in interviews
+## Why these rates hold (and where they break)
 
-Two questions you'll get pressure-tested on:
+**Why these are the right rates:**
+- Binomial: each node introduces a `dt` discretisation. The local error is
+  `O(dt²)` per step, summed across `N = T/dt` steps → global `O(dt) = O(1/N)`.
+- MC: variance of the sample mean is `σ²/N`, so SE is `σ/√N`.
 
-1. **"Why are these the right convergence rates?"**
-   - Binomial: each node introduces a `dt` discretisation. The local error is
-     `O(dt²)` per step, summed across `N = T/dt` steps → global `O(dt) = O(1/N)`.
-   - MC: variance of the sample mean is `σ²/N`, so SE is `σ/√N`.
-
-2. **"Where do these rates break?"**
-   - Binomial: discontinuous payoffs (digitals, barriers near a barrier) hit
-     CRR with oscillation — error doesn't shrink monotonically. Use a finer
-     tree near the discontinuity, or a smoothing scheme (Heston-Lewis).
-   - MC: pathwise non-smoothness (deep OTM with finite path count) produces
-     high variance and slow convergence. Mitigations: stratified sampling,
-     importance sampling, Sobol sequences.
+**Where the rates break:**
+- Binomial: discontinuous payoffs (digitals, barriers near a barrier) hit
+  CRR with oscillation — error doesn't shrink monotonically. Mitigations:
+  finer tree near the discontinuity, or a smoothing scheme (Heston-Lewis).
+- MC: pathwise non-smoothness (deep OTM with finite path count) produces
+  high variance and slow convergence. Mitigations: stratified sampling,
+  importance sampling, low-discrepancy (Sobol) sequences.
